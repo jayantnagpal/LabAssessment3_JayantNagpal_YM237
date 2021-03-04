@@ -28,11 +28,11 @@ public class TraineeController extends HttpServlet {
 		HttpSession httpSession=request.getSession();
 		
 		if(action.equalsIgnoreCase("add")) {
-			request.getRequestDispatcher("\\WEB-INF\\views\\AddTrainee.jsp").forward(request, response);
+			request.getRequestDispatcher("AddTrainee.jsp").forward(request, response);
 		}else if(action.equalsIgnoreCase("showall")) {
 			List<Trainee> trainees = traineeService.allTrainees();
 			request.setAttribute("trainees", trainees);
-			RequestDispatcher rd = request.getRequestDispatcher("\\WEB-INF\\views\\show.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("show.jsp");
 			rd.forward(request, response);
 		}
 	}
