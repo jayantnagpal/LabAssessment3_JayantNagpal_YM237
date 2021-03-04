@@ -1,0 +1,12 @@
+package com.app.traineemgt.model.service;
+
+public class UserService {
+	public static User validateUser(String username, String password) {
+		if(username.contentEquals(password)) {
+			return new User(username, password);
+		}else {
+			throw new UserNotFoundException();
+		}
+	}
+
+}

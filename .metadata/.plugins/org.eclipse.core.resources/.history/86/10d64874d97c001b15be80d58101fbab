@@ -1,0 +1,9 @@
+package com.app.traineemgt.model.service;
+
+public class Trainee {
+	private int traineeId;
+	private String traineeName;
+	private String branch;
+	
+
+}

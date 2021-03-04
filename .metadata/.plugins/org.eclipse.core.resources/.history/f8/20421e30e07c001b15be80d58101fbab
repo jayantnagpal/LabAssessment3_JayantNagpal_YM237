@@ -1,0 +1,43 @@
+package com.app.traineemgt.dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.app.traineemgt.model.service.Trainee;
+
+public class TraineeDaoImpl implements TraineeDao {
+	private Connection connection;
+	
+	public TraineeDaoImpl() {
+		this.connection=ConnectionFactory.getConnection();
+	}
+
+	@Override
+	public List<Trainee> allTrainees() {
+		List<Trainee> trainees = new ArrayList<>();
+		Trainee trainee=null;
+		
+		try {
+			Statement stmt=connection.createStatement();
+			ResultSet rs=stmt.executeQuery("select * from trainees");
+			while(rs.next()) {
+				trainee=new Trainee(rs.getInt("traineeId"), rs.getString("traineeName"), rs.getString("branch"), rs.getDouble("percentage"));
+				
+			}
+		}catch(SQLException ex) {
+			throw new DataAccessException(ex.getMessage());
+		}
+	}
+
+	@Override
+	public Trainee addTrainee(Trainee trainee) {
+		
+	}
+	
+	
+
+}

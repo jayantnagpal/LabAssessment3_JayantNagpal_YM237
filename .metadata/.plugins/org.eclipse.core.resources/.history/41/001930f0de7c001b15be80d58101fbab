@@ -1,0 +1,7 @@
+package com.app.traineemgt.model.service;
+
+public interface TraineeService {
+	public List<Trainee> allTrainees();
+	public Trainee addTrainee(Trainee trainee);
+
+}

@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+C:\Users\ve00ym237\Documents\LabAssessment3\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3911512307.index
+1412291882.index
+530865549.index
+2769135566.index
+3076039635.index
+2257146719.index
+3302403906.index

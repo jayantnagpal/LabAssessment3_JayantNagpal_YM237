@@ -1,0 +1,56 @@
+package com.app.traineemgt.web.filter;
+
+import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.app.traineemgt.model.service.User;
+
+@WebFilter("*.do")
+public class SecurityFilter implements Filter {
+	
+	public void init(FilterConfig fConfig) throws ServletException {
+		
+	}
+
+	
+
+	/**
+	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 */
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest httpServletRequest=(HttpServletRequest) request;
+		HttpServletResponse httpServletResponse=(HttpServletResponse) response;
+		boolean isLoggedIn=false;
+		
+		HttpSession httpSession=httpServletRequest.getSession(false);
+		if(httpSession!=null) {
+			User user=(User) httpSession.getAttribute("user");
+			if(user!=null) {
+				isLoggedIn=true;
+			}
+		}
+		
+		if(isLoggedIn) {
+			chain.doFilter(request, response);
+		}else {
+			httpServletResponse.sendRedirect("LoginController");
+		}
+		
+	}
+
+	public void destroy() {
+		
+	}
+	
+
+}
